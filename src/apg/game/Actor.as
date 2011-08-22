@@ -1,7 +1,10 @@
 package apg.game {
 	import apg.physics.PhysicalModel;
+
 	import org.osflash.signals.Signal;
+
 	import flash.display.DisplayObject;
+
 	/**
 	 * The Actor class is used to manage the different pieces of an in-game interactive
 	 * object. It ties together the game object's view, physical model, game defined
@@ -34,24 +37,33 @@ package apg.game {
 		 */
 		public var behaviorRemoved : Signal;
 		
+		// visual representation of actor
 		private var _view : DisplayObject;
+		// physical properties of actor
 		private var _physicalModel : PhysicalModel;
+		// list of behaviors that control actor
 		private var _behaviors : Vector.<Behavior>;
+		// actor's properties
 		private var _dynamicProperties : Object;
+		// actor's name
 		private var _name : String;
 
+		/**
+		 * Constructs an Actor with the passed name. By default, no dynamic properties or 
+		 * behaviors have been added.
+		 */
 		public function Actor(name : String) {
 			// instantiate signals
 			nameChanged = new Signal(String);
 			dynamicPropertiesChanged = new Signal(Object);
 			behaviorAdded = new Signal(Behavior);
 			behaviorRemoved = new Signal(Behavior);
-			
+
 			// setup fields
 			_name = name;
 			_dynamicProperties = new Object();
 			_behaviors = new Vector.<Behavior>();
-		}		
+		}
 
 		/**
 		 * The visual representation of the Actor.
@@ -64,38 +76,62 @@ package apg.game {
 			_view = view;
 		}
 
+		/**
+		 * The Actor's name.
+		 */
 		public function get name() : String {
 			return _name;
 		}
-		
+
 		public function set name(value : String) : void {
 			_name = value;
 		}
-		
+
+		/**
+		 * Represents the physical properties of the actor, such as position, velocity,
+		 * acceleration and angle.
+		 */
 		public function get physicalModel() : PhysicalModel {
 			return _physicalModel;
 		}
-		
+
 		public function set physicalModel(physicalModel : PhysicalModel) : void {
 			_physicalModel = physicalModel;
 		}
-		
+
+		/**
+		 * Returns the value of the specified dynamic property of the actor. Dynamic properties
+		 * can be used to store meta-information about the actor.
+		 */
 		public function getDynamicProperty(propertyName : String) : * {
 			return _dynamicProperties[propertyName];
 		}
-		
+
+		/**
+		 * Sets the value of the specified dynamic property of the actor. Dynamic properties
+		 * can be used to store meta-information about the actor. Dispatches the dynamicPropertiesChanged
+		 * signal.
+		 */
 		public function setDynamicProperty(propertyName : String, value : *) : void {
 			_dynamicProperties[propertyName] = value;
 		}
-		
+
+		/**
+		 * Adds the passed Behavior to the actor, and calls the Behavior's initalize() function.
+		 * Dispatches the behaviorAdded signal.
+		 */
 		public function addBehavior(behavior : Behavior) : void {
-			
 		}
-		
+
+		/**
+		 * Removes the passed Behavior from the actor and dispatches the behaviorRemoved signal.
+		 */
 		public function removeBehavior(behavior : Behavior) : void {
-			
 		}
-		
+
+		/**
+		 * Returns a String representation of the Actor.
+		 */
 		public function toString() : String {
 			return "[Actor: '" + name + "']";
 		}
