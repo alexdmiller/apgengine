@@ -29,6 +29,8 @@ package apg.game {
 			return _name;
 		}
 
-
+		public function toString() : String {
+			return "[Actor: '" + name + "']";
+		}
 	}
 }
