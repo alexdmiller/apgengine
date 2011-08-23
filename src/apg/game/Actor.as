@@ -97,9 +97,10 @@ package apg.game {
 		public function get physicalModel() : PhysicalModel {
 			return _physicalModel;
 		}
-
+		
 		public function set physicalModel(physicalModel : PhysicalModel) : void {
 			_physicalModel = physicalModel;
+			_physicalModel.actor = this;
 		}
 		
 		/**

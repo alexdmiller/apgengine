@@ -77,7 +77,10 @@ package apg.game {
 		public function containsActorWithName(name : String) : Boolean {
 			return name != "" && getActorWithName(name) != null;
 		}
-
+	
+		/**
+		 * Returns true if the passed actor is contained in the GameBoard.
+		 */
 		public function containsActor(actor : Actor) : Boolean {
 			return _actors.indexOf(actor) >= 0;
 		}

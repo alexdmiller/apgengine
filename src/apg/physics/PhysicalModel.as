@@ -9,7 +9,7 @@ package apg.physics {
 		/**
 		 * Construct a PhysicalModel associated with the passed Actor object.
 		 */
-		function PhysicalModel(actor : Actor) : void;
+		function PhysicalModel() : void;
 		
 		/**
 		 * The x position of the object.
@@ -57,5 +57,6 @@ package apg.physics {
 		 * The Actor which the PhysicalModel contains the physical properties of.
 		 */
 		function get actor() : Actor;
+		function set actor(value : Actor) : void;
 	}
 }
