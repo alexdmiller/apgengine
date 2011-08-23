@@ -23,6 +23,8 @@ package apg.game {
 		 */
 		public function GameBoard() {
 			_actors = new Vector.<Actor>();
+			actorAdded = new Signal(Actor);
+			actorRemoved = new Signal(Actor);
 		}
 
 		/**
@@ -91,6 +93,12 @@ package apg.game {
 		public function dispatchAction(actionName : String, info : Object) : void {
 			for each (var actor : Actor in _actors) {
 				actor.action(actionName, info);
+			}
+		}
+		
+		public function updateActorViews() : void {
+			for each (var actor : Actor in _actors) {
+				actor.updateView();
 			}
 		}
 	}

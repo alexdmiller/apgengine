@@ -1,4 +1,5 @@
 package apg.game {
+	import flash.display.Sprite;
 	import apg.physics.PhysicalModel;
 
 	import org.osflash.signals.Signal;
@@ -162,6 +163,12 @@ package apg.game {
 			for each (var behavior : Behavior in _behaviors) {
 				behavior.action(actionName, info);
 			}
+		}
+		
+		public function updateView() : void {
+			view.x = physicalModel.x;
+			view.y = physicalModel.y;
+			view.rotation = physicalModel.angle;
 		}
 
 		/**
