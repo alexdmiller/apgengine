@@ -11,6 +11,7 @@ package {
 			error_sameNameActors();
 			getActor();
 			getActorAfterNameChange();
+			addActorUpdatesActor();
 		}
 		
 		private function error_duplicateActor() : void {
@@ -61,5 +62,16 @@ package {
 			trace(b.containsActorWithName("my actor") == false);
 			trace(b.containsActorWithName("another actor") == true);
 		}
+		
+		private function addActorUpdatesActor() : void {
+			trace("--- addActorUpdatesActor ---");
+			var b : GameBoard = new GameBoard();
+			var a1 : Actor = new Actor("my actor");
+			b.addActor(a1);
+			trace(a1.gameBoard == b);
+			b.removeActor(a1);
+			trace(a1.gameBoard == null); 
+		}
+		
 	}
 }

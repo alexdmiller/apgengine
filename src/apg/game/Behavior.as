@@ -5,8 +5,8 @@ package apg.game {
 	 */
 	public interface Behavior {
 		/**
-		 * Sets up the behavior's internal state and signal listeners.
+		 * Handle an action.
 		 */
-		function Behavior(actor : Actor, board : GameBoard) : void;
+		function action(actionName : String, info : Object) : void;
 	}
 }

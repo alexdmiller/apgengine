@@ -47,15 +47,17 @@ package apg.game {
 		private var _dynamicProperties : Object;
 		// actor's name
 		private var _name : String;
+		// the board the actor is added to
+		private var _gameBoard: GameBoard;
 
 		/**
 		 * Constructs an Actor with the passed name. By default, no dynamic properties or 
 		 * behaviors have been added.
 		 */
-		public function Actor(name : String) {
+		public function Actor(name : String = "") {
 			// instantiate signals
 			nameChanged = new Signal(String);
-			dynamicPropertiesChanged = new Signal(Object);
+			dynamicPropertiesChanged = new Signal(String);
 			behaviorAdded = new Signal(Behavior);
 			behaviorRemoved = new Signal(Behavior);
 
@@ -98,6 +100,17 @@ package apg.game {
 		public function set physicalModel(physicalModel : PhysicalModel) : void {
 			_physicalModel = physicalModel;
 		}
+		
+		/**
+		 * The parent GameBoard that contains the Actor.
+		 */
+		public function get gameBoard() : GameBoard {
+			return _gameBoard;
+		}
+
+		public function set gameBoard(gameBoard : GameBoard) : void {
+			_gameBoard = gameBoard;
+		}
 
 		/**
 		 * Returns the value of the specified dynamic property of the actor. Dynamic properties
@@ -114,6 +127,7 @@ package apg.game {
 		 */
 		public function setDynamicProperty(propertyName : String, value : *) : void {
 			_dynamicProperties[propertyName] = value;
+			dynamicPropertiesChanged.dispatch(propertyName, value);
 		}
 
 		/**
@@ -121,12 +135,31 @@ package apg.game {
 		 * Dispatches the behaviorAdded signal.
 		 */
 		public function addBehavior(behavior : Behavior) : void {
+			_behaviors.push(behavior);
+			behaviorAdded.dispatch(behavior);
 		}
 
 		/**
-		 * Removes the passed Behavior from the actor and dispatches the behaviorRemoved signal.
+		 * Removes the passed Behavior from the actor and dispatches the behaviorRemoved signal. Throws
+		 * an error if the behavior is not contained within the Actor.
 		 */
 		public function removeBehavior(behavior : Behavior) : void {
+			var index : int = _behaviors.indexOf(behavior);
+			if (index < 0) {
+				throw new Error("Behavior " + behavior + " is not contained within the Actor.");
+			}
+			_behaviors.splice(index, 1);
+			behaviorRemoved.dispatch(behavior);
+		}
+		
+		/**
+		 * Sends an action to the Actor. The way an Actor responds to action depends on what Behavior
+		 * objects have been added to the actor.
+		 */
+		public function action(actionName : String, info : Object) : void {
+			for each (var behavior : Behavior in _behaviors) {
+				behavior.action(actionName, info);
+			}
 		}
 
 		/**
