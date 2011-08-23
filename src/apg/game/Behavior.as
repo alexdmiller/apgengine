@@ -5,7 +5,7 @@ package apg.game {
 	 */
 	public interface Behavior {
 		/**
-		 * Handle an action.
+		 * Handles an action.
 		 */
 		function action(actionName : String, info : Object = null) : void;
 	}

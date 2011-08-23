@@ -9,6 +9,7 @@ package {
 		public function ActorTest() {
 			behaviorRecievesAction();
 			editDynamicProperties();
+			error_removeBehavior();
 		}
 		
 		private function behaviorRecievesAction() : void {
@@ -27,6 +28,17 @@ package {
 			a.setDynamicProperty("prop", "val");
 			trace(a.getDynamicProperty("prop") == "val");
 			trace(a.getDynamicProperty("no prop") == undefined);
+		}
+		
+		private function error_removeBehavior() : void {
+			trace("--- error_removeBehavior ---");
+			var a : Actor = new Actor();
+			var b : Behavior = new DummyBehavior();
+			try {
+				a.removeBehavior(b);
+			} catch(error:Error) {
+				trace(error);
+			}
 		}
 	}
 }
