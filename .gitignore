@@ -8,3 +8,9 @@
 .settings/com.powerflasher.fdt.core.prefs
 
 .settings/launch/ActorTest.launch
+
+.DS_Store
+
+build.xml
+
+build_project.properties
