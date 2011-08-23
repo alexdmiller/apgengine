@@ -87,6 +87,7 @@ package apg.game {
 
 		public function set name(value : String) : void {
 			_name = value;
+			nameChanged.dispatch(value);
 		}
 
 		/**
@@ -156,7 +157,7 @@ package apg.game {
 		 * Sends an action to the Actor. The way an Actor responds to action depends on what Behavior
 		 * objects have been added to the actor.
 		 */
-		public function action(actionName : String, info : Object) : void {
+		public function action(actionName : String, info : Object = null) : void {
 			for each (var behavior : Behavior in _behaviors) {
 				behavior.action(actionName, info);
 			}

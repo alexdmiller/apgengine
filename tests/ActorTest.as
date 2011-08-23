@@ -7,13 +7,26 @@ package {
 	 */
 	public class ActorTest extends Sprite {
 		public function ActorTest() {
-			var a : Actor = new Actor("My actor");
-			trace(a);
+			behaviorRecievesAction();
+			editDynamicProperties();
 		}
 		
-		private function error_behaviorRemoved() : void {
+		private function behaviorRecievesAction() : void {
+			trace("--- behaviorRecievesAction ---");
 			var a : Actor = new Actor();
 			var b : Behavior = new DummyBehavior();
+			a.addBehavior(b);
+			a.action("my action");
+			a.removeBehavior(b);
+			a.action("my action");
+		}
+		
+		private function editDynamicProperties() : void {
+			trace("--- editDynamicProperties ---");
+			var a : Actor = new Actor();
+			a.setDynamicProperty("prop", "val");
+			trace(a.getDynamicProperty("prop") == "val");
+			trace(a.getDynamicProperty("no prop") == undefined);
 		}
 	}
 }

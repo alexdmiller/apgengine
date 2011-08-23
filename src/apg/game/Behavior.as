@@ -7,6 +7,6 @@ package apg.game {
 		/**
 		 * Handle an action.
 		 */
-		function action(actionName : String, info : Object) : void;
+		function action(actionName : String, info : Object = null) : void;
 	}
 }

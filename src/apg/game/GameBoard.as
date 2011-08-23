@@ -14,6 +14,7 @@ package apg.game {
 		 * Dispatched when an actor is removed from the GameBoard.
 		 */
 		public var actorRemoved : Signal;
+		
 		// a vector of all actors contained within the GameBoard
 		private var _actors : Vector.<Actor>;
 
@@ -25,8 +26,8 @@ package apg.game {
 		}
 
 		/**
-		 * Adds the passed Actor to the GameBoard. Throws an error if an Actor with the
-		 * same name has already been added to the GameBoard.
+		 * Adds the passed Actor to the GameBoard. Dispatches the actorAdded signal.
+		 * Throws an error if an Actor with the same name has already been added to the GameBoard.
 		 */
 		public function addActor(actor : Actor) : void {
 			if (containsActor(actor)) {
@@ -37,11 +38,12 @@ package apg.game {
 			}
 			_actors.push(actor);
 			actor.gameBoard = this;
+			actorAdded.dispatch(actor);
 		}
 
 		/**
-		 * Removes the passed Actor from the GameBoard. Throws an error if the Actor could not 
-		 * be found in the GameBoard.
+		 * Removes the passed Actor from the GameBoard. Dispatches the actorRemoved signal.
+		 * Throws an error if the Actor could not be found in the GameBoard.
 		 */
 		public function removeActor(actor : Actor) : void {
 			var index : int = _actors.indexOf(actor);
@@ -50,6 +52,7 @@ package apg.game {
 			}
 			_actors.splice(index, 1);
 			actor.gameBoard = null;
+			actorRemoved.dispatch(actor);
 		}
 
 		/**
