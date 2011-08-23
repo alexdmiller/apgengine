@@ -7,11 +7,6 @@ package apg.physics {
 	 */
 	public interface PhysicalModel {
 		/**
-		 * Construct a PhysicalModel associated with the passed Actor object.
-		 */
-		function PhysicalModel() : void;
-		
-		/**
 		 * The x position of the object.
 		 */
 		function get x() : Number;
@@ -34,18 +29,6 @@ package apg.physics {
 		 */
 		function get vy() : Number;
 		function set vy(value : Number) : void;
-		
-		/**
-		 * The x component of the object's acceleration.
-		 */
-		function get ax() : Number;
-		function set ax(value : Number) : void;
-		
-		/**
-		 * The y component of the object's acceleration.
-		 */
-		function get ay() : Number;
-		function set ay(value : Number) : void;
 		
 		/**
 		 * The object's rotation in radians.
