@@ -166,9 +166,11 @@ package apg.game {
 		}
 		
 		public function updateView() : void {
-			view.x = physicalModel.x;
-			view.y = physicalModel.y;
-			view.rotation = physicalModel.angle;
+			if (view && physicalModel) {
+				view.x = physicalModel.x;
+				view.y = physicalModel.y;
+				view.rotation = physicalModel.angle;
+			}
 		}
 
 		/**
