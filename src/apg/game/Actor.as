@@ -161,7 +161,7 @@ package apg.game {
 		 */
 		public function action(actionName : String, info : Object = null) : void {
 			for each (var behavior : Behavior in _behaviors) {
-				behavior.action(actionName, info);
+				behavior.action(actionName, this, info);
 			}
 		}
 		
