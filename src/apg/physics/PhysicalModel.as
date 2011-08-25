@@ -41,5 +41,7 @@ package apg.physics {
 		 */
 		function get actor() : Actor;
 		function set actor(value : Actor) : void;
+		
+		function applyForce(x : Number, y : Number) : void;
 	}
 }
