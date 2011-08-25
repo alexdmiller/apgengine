@@ -169,7 +169,7 @@ package apg.game {
 			if (view && physicalModel) {
 				view.x = physicalModel.x;
 				view.y = physicalModel.y;
-				view.rotation = physicalModel.angle;
+				view.rotation = physicalModel.angle * 180 / Math.PI;
 			}
 		}
 
