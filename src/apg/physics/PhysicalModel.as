@@ -31,6 +31,16 @@ package apg.physics {
 		function set vy(value : Number) : void;
 		
 		/**
+		 * Object's physical width.
+		 */
+		function get width() : Number;
+		
+		/**
+		 * Object's physical width.
+		 */
+		function get height() : Number;
+		
+		/**
 		 * The object's rotation in radians.
 		 */
 		function get angle() : Number;
@@ -42,6 +52,9 @@ package apg.physics {
 		function get actor() : Actor;
 		function set actor(value : Actor) : void;
 		
+		/**
+		 * Applies a force to the center of the of mass of the object.
+		 */
 		function applyForce(x : Number, y : Number) : void;
 	}
 }
