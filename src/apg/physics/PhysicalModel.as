@@ -34,11 +34,13 @@ package apg.physics {
 		 * Object's physical width.
 		 */
 		function get width() : Number;
+		function set width(value : Number) : void;
 		
 		/**
-		 * Object's physical width.
+		 * Object's physical height.
 		 */
 		function get height() : Number;
+		function set height(value : Number) : void;
 		
 		/**
 		 * The object's rotation in radians.
