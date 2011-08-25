@@ -77,7 +77,7 @@ package apg.game {
 		 * Returns true if an actor with the passed name is currently added to the GameBoard.
 		 */
 		public function containsActorWithName(name : String) : Boolean {
-			return name != "" && getActorWithName(name) != null;
+			return getActorWithName(name) != null;
 		}
 	
 		/**
@@ -100,6 +100,10 @@ package apg.game {
 			for each (var actor : Actor in _actors) {
 				actor.updateView();
 			}
+		}
+
+		public function get actors() : Vector.<Actor> {
+			return _actors;
 		}
 	}
 }
